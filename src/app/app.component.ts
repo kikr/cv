@@ -6,5 +6,5 @@ import { BrowserModule } from '@angular/platform-browser';
   template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
-  
+
 }

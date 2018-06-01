@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   title = 'app';
   cvs: Cv[];
 
-  constructor(private cvService: CvService){
+  constructor(private cvService: CvService) {
 
   }
 
@@ -22,5 +22,5 @@ export class DashboardComponent implements OnInit {
     this.cvs = this.cvService.getCvs();
     console.log(this.cvs);
   }
-  
+
 }

@@ -1,0 +1,12 @@
+<button [routerLink]="['/cvs']"> Add CV </button>
+
+<table *ngIf='cvs && cvs.length' style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+  </tr>
+  <tr *ngFor='let cv of cvs'>
+    <td> {{ cv.firstName }} </td>
+    <td> {{ cv.lastName }} </td>
+  </tr>
+</table>

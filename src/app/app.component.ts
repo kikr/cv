@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Cv } from './cv/models/cv';
-import { CvService } from './cv/services/cv.service';
+import { Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 @Component({

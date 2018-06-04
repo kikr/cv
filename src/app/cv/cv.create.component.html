@@ -1,16 +1,19 @@
 <div>
     <h1> Adding cv </h1>
 
-    <form action="http://localhost/cvs" method="POST">
-        CV Title:<br>
-        <input type="text" name="title"><br>
+    <form [formGroup]="cvCreateForm" (ngSubmit)="onCreate()">
+        <label for="cvTitle"> CV Title:
+            <input type="text" formControlName="cvTitle"><br>
+        </label>
 
-        First name:<br>
-        <input type="text" name="firstName"><br>
-        Last name:<br>
-        <input type="text" name="lastName">
+        <label for="userFirstName"> First name:
+            <input type="text" formControlName="userFirstName"><br>
+        </label>
 
-        <br>
+        <label for="userLastName"> Last name:
+            <input type="text" formControlName="userLastName"><br>
+        </label>
+
         <input type="submit" value="Create">
     </form>
 </div>

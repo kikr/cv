@@ -1,15 +1,17 @@
 import { Cv } from '../models/cv';
+import { of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-Injectable();
+@Injectable()
 export class CvService {
-    getCvs(): Cv[] {
+    private serverUrl = 'http://localhost';
+
+    constructor(private httpClient: HttpClient) { }
+
+    getCvs(): Observable<Cv[]> {
         console.log('Retrieving CVs...');
-        return [
-            {
-                "firstName": "Kim",
-                "lastName": "Kraft"
-            }
-        ];
+        return this.httpClient.get<Cv[]>(`${this.serverUrl}/cvs/`);
     }
 }

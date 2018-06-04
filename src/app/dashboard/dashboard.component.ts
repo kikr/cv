@@ -19,8 +19,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Getting CVs on init...');
-    this.cvs = this.cvService.getCvs();
-    console.log(this.cvs);
+    this.cvService.getCvs()
+      .subscribe((cvs) => {
+        this.cvs = cvs;
+        console.log(`Got CVs ${cvs}`);
+      });
   }
 
 }

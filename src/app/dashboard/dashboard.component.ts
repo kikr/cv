@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     this.cvService.getCvs()
       .subscribe((cvs) => {
         this.cvs = cvs;
-        console.log(`Got CVs ${cvs}`);
+        console.log(`Got ${cvs.length} CV(s)`);
       });
   }
 

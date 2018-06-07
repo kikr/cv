@@ -4,14 +4,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { CvService } from './cv.service';
 import { Cv, CvBuilder } from '../models/cv';
-import { environment } from '../../../environments/environment';
 
 /**
  * https://angular.io/guide/http#testing-http-requests
  */
 describe('CvService', () => {
     // TODO: Hard coded url
-    const cvsResourceUrl = `${environment.SERVER_URL}/cvs/`;
+    const cvsPath = `api/cvs/`;
     let component: CvService;
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
@@ -42,7 +41,7 @@ describe('CvService', () => {
             expect(cvs).toBe(responseData);
         });
         // Test that request was made to HTTP client
-        const request = httpTestingController.expectOne(cvsResourceUrl);
+        const request = httpTestingController.expectOne(cvsPath);
 
         // Mimic server response
         request.flush(responseData);
@@ -63,7 +62,7 @@ describe('CvService', () => {
         // TODO: Hard coded url
         httpTestingController.expectOne((req: HttpRequest<any>) => {
             return req.method === 'POST'
-                && req.url === cvsResourceUrl
+                && req.url === cvsPath
                 && JSON.stringify(req.body) === JSON.stringify({
                     user: { firstName, lastName }, title
                 });

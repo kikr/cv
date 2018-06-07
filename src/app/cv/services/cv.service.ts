@@ -2,10 +2,11 @@ import { Cv } from '../models/cv';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class CvService {
-    private serverUrl = 'http://localhost';
+    private serverUrl = environment.SERVER_URL;
 
     constructor(private httpClient: HttpClient) {
     }

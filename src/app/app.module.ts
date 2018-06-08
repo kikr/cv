@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CvCreateComponent } from './cv/cv.create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     HttpClientModule,
     BrowserModule,
+    MaterialModule,  // MaterialModule needs to come after BrowserModule
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'cvs', component: CvCreateComponent },

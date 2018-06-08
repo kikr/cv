@@ -1,14 +1,21 @@
-<button [routerLink]="['/cvs']"> Add CV </button>
+<a mat-raised-button [routerLink]="['/cvs']"> Add CV </a>
 
-<table *ngIf='cvs && cvs.length' style="width:100%">
-  <tr>
-    <th>Title</th>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-  </tr>
-  <tr *ngFor='let cv of cvs'>
-    <td> {{ cv.title }} </td>
-    <td> {{ cv.user.firstName }} </td>
-    <td> {{ cv.user.lastName }} </td>
-  </tr>
+<table mat-table [dataSource]="cvs" width="100%">
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+    <ng-container matColumnDef="cvTitle">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let cv"> {{cv.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cvUserFirstName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let cv"> {{cv.user.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cvUserLastName">
+        <th mat-header-cell *matHeaderCellDef> Last name </th>
+        <td mat-cell *matCellDef="let cv"> {{cv.user.lastName}} </td>
+    </ng-container>
 </table>

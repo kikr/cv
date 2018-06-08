@@ -1,19 +1,25 @@
-<div>
-    <h1> Adding cv </h1>
+<div class="cv-create-form">
+        <h2 width="100%" style="color: rgb(75, 75, 75); background-color: rgb(224, 224, 224);"> Adding cv </h2>
+    
+        <form [formGroup]="cvCreateForm" (ngSubmit)="onCreate()">
+            <mat-form-field appearance="standard">
+                <mat-label> CV Title: </mat-label>
+                <input matInput placeholder="Cv title" formControlName="cvTitle">
+            </mat-form-field>
+            <br />
 
-    <form [formGroup]="cvCreateForm" (ngSubmit)="onCreate()">
-        <label for="cvTitle"> CV Title:
-            <input type="text" formControlName="cvTitle"><br>
-        </label>
+            <mat-form-field appearance="standard">
+                <mat-label>  First name: </mat-label>
+                <input matInput placeholder="First name" formControlName="userFirstName">
+            </mat-form-field>
+            <br />
 
-        <label for="userFirstName"> First name:
-            <input type="text" formControlName="userFirstName"><br>
-        </label>
-
-        <label for="userLastName"> Last name:
-            <input type="text" formControlName="userLastName"><br>
-        </label>
-
-        <input type="submit" value="Create">
-    </form>
-</div>
+            <mat-form-field appearance="standard">
+                <mat-label>  Last name: </mat-label>
+                <input matInput placeholder="Last name" formControlName="userLastName">
+            </mat-form-field>
+            <br />
+    
+            <button mat-raised-button type="submit" value="Create" > Create </button>
+        </form>
+    </div>

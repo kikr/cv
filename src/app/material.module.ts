@@ -1,5 +1,6 @@
-import { MatTableModule, MatButtonModule} from '@angular/material';
+import { MatTableModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /*
   Feature module for wrapping all Material Design components
@@ -7,12 +8,18 @@ import { NgModule } from '@angular/core';
 */
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
+    BrowserAnimationsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

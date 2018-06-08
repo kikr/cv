@@ -8,6 +8,7 @@ import { CvService } from './services/cv.service';
 @Injectable()
 @Component({
     templateUrl: './cv.create.component.html',
+    styleUrls: ['./cv.create.component.css'],
     providers: [CvService]
 })
 export class CvCreateComponent {

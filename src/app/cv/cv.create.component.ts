@@ -1,6 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { Cv, CvBuilder } from './models/cv';
 import { CvService } from './services/cv.service';
@@ -16,7 +17,8 @@ export class CvCreateComponent {
     cvCreateForm: FormGroup;
 
     constructor(private formGroupBuilder: FormBuilder,
-                private cvService: CvService) {
+                private cvService: CvService,
+                private router: Router) {
         this.initCvForm();
     }
 
@@ -37,7 +39,9 @@ export class CvCreateComponent {
             .build()
         )
         .subscribe(cv => {
-            console.log(`Created CV: ${cv}`);
+            console.log(`Created CV`);
+            // Navigate back to dashboard
+            this.router.navigate(['/dashboard']);
         });
     }
 }

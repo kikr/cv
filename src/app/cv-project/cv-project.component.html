@@ -1,0 +1,29 @@
+<div>
+    <h2 width="100%" style="color: rgb(75, 75, 75); background-color: rgb(224, 224, 224);"> Adding project </h2>
+
+    <form  class="cv-project-form" [formGroup]="cvProjectForm" (ngSubmit)="onCreate()">
+        <mat-form-field appearance="standard">
+            <mat-label> Project title: </mat-label>
+            <input matInput placeholder="Project title" formControlName="cvProjectTitle">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="cvProjectStartpicker" formControlName="cvProjectStart" placeholder="Start date of the project">
+            <mat-datepicker-toggle matSuffix [for]="cvProjectStartpicker"></mat-datepicker-toggle>
+            <mat-datepicker #cvProjectStartpicker startView="year"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="cvProjectEndPicker" formControlName="cvProjectEnd" placeholder="End date of the project">
+            <mat-datepicker-toggle matSuffix [for]="cvProjectEndPicker"></mat-datepicker-toggle>
+            <mat-datepicker #cvProjectEndPicker startView="year"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label> Description: </mat-label>
+            <textarea matInput placeholder="Describe your project" formControlName="cvProjectDescription"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" value="Add project" > Create </button>
+    </form>
+</div>

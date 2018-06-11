@@ -7,13 +7,16 @@ import { CvCreateComponent } from './cv/cv.create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
+import { CvProjectComponent } from './cv-project/cv-project.component';
+import { CvProjectDataService } from './cv-project/cv-project.data.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CvCreateComponent,
-    DashboardComponent
+    DashboardComponent,
+    CvProjectComponent
   ],
   imports: [
     HttpClientModule,
@@ -23,11 +26,12 @@ import { MaterialModule } from './material.module';
     RouterModule.forRoot([
       { path: 'cvs', component: CvCreateComponent },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'project', component: CvProjectComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },  // TODO: PageNotFoundComponent
     ], { useHash: true})
   ],
-  providers: [],
+  providers: [ CvProjectDataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

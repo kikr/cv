@@ -1,4 +1,5 @@
-import { MatTableModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { MatTableModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatListModule, MatDatepickerModule,
+         MatNativeDateModule} from '@angular/material';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -12,14 +13,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     BrowserAnimationsModule,
     MatTableModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }

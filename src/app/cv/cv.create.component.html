@@ -16,6 +16,13 @@
                 <mat-label>  Last name: </mat-label>
                 <input matInput placeholder="Last name" formControlName="userLastName">
             </mat-form-field>
+
+            <mat-label>  Projects </mat-label>
+            <a mat-raised-button [routerLink]="['/project']">  Add project </a>
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let project of projects"> {{ project.title }} </a>
+            </mat-nav-list>
+
     
             <button mat-raised-button type="submit" value="Create" > Create </button>
         </form>

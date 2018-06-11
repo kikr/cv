@@ -63,9 +63,7 @@ describe('CvService', () => {
         httpTestingController.expectOne((req: HttpRequest<any>) => {
             return req.method === 'POST'
                 && req.url === cvsPath
-                && JSON.stringify(req.body) === JSON.stringify({
-                    user: { firstName, lastName }, title
-                });
+                && JSON.stringify(req.body) === JSON.stringify(cvUnsaved);
         }).flush(cvUnsaved);
     });
 });

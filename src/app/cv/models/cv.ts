@@ -1,3 +1,5 @@
+import { Project } from '../../cv-project/project';
+
 class User {
     firstName: string;
     lastName: string;
@@ -6,9 +8,15 @@ class User {
 export class Cv {
     title: string;
     user: User;
+    projects: Project[];
 
     constructor() {
         this.user = new User();
+        this.projects = [];
+    }
+
+    getProjects(): Project[] {
+        return this.projects;
     }
 }
 
@@ -31,6 +39,11 @@ export class CvBuilder {
 
     setUserLastName(lastName: string): CvBuilder {
         this.cv.user.lastName = lastName;
+        return this;
+    }
+
+    addProject(project: Project): CvBuilder {
+        this.cv.projects.push(project);
         return this;
     }
 

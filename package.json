@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-develop": "ng serve --proxy-config dev.proxy.conf.json -o",
     "build": "ng build --prod",
     "test": "ng test --watch=false --browsers=PhantomJS",
     "lint": "ng lint",

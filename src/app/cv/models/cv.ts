@@ -18,6 +18,18 @@ export class Cv {
     getProjects(): Project[] {
         return this.projects;
     }
+
+    getCvTitle() {
+        return this.title;
+    }
+
+    getUserFirstName() {
+        return this.user.firstName;
+    }
+
+    getUserLastName() {
+        return this.user.lastName;
+    }
 }
 
 export class CvBuilder {

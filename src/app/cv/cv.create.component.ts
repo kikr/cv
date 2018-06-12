@@ -79,9 +79,9 @@ export class CvCreateComponent {
         const cv = this.cvBuilder.build();
         const form = {};
 
-        form[CvCreateFormFieldNames.cvTitle] = cv.title;
-        form[CvCreateFormFieldNames.userFirstName] = cv.user.firstName;
-        form[CvCreateFormFieldNames.userLastName] = cv.user.lastName;
+        form[CvCreateFormFieldNames.cvTitle] = cv.getCvTitle();
+        form[CvCreateFormFieldNames.userFirstName] = cv.getUserFirstName();
+        form[CvCreateFormFieldNames.userLastName] = cv.getUserLastName();
 
         // Use patchValue instead of setValue to ignore any (validation) errors, because
         // it's possible to have em' at this point, like user has yet to submit all data.

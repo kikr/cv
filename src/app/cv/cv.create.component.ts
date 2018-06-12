@@ -6,8 +6,14 @@ import { Router } from '@angular/router';
 import { Cv, CvBuilder } from './models/cv';
 import { CvService } from './services/cv.service';
 import { Project } from '../cv-project/project';
-import { CvProjectDataService } from '../cv-project/cv-project.data.service';
 import { Subscription } from 'rxjs';
+import { CvBuilderStatefulService } from './cv.builder.stateful.service';
+
+enum CvCreateFormFieldNames {
+    cvTitle = 'cvTitle',
+    userFirstName = 'userFirstName',
+    userLastName = 'userLastName',
+}
 
 @Injectable()
 @Component({
@@ -15,37 +21,43 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./cv.create.component.css'],
     providers: [ CvService ]
 })
-export class CvCreateComponent implements OnDestroy {
+export class CvCreateComponent {
 
     cvCreateForm: FormGroup;
     @Input() projects: Project[] = [];
     cvBuilder: CvBuilder;
-    cvProjectDataServiceSubscription: Subscription;
+    cvBuilderServiceSubscription: Subscription;
 
     constructor(private formGroupBuilder: FormBuilder,
                 private cvService: CvService,
-                private cvProjectDataService: CvProjectDataService,
+                private cvBuilderService: CvBuilderStatefulService,
                 private router: Router) {
-        this.initCvForm();
 
-        this.cvBuilder = new CvBuilder();
-        this.cvProjectDataServiceSubscription = this.cvProjectDataService.projectData.subscribe(this.onProjectAdd.bind(this));
+        this.initCvForm();
+        this.initCvBuilder();
+        this.bindDataToView();
+    }
+
+    initCvBuilder(): void {
+        // Subscribe briefly jsut to get the latest CvBuilder instance for updating it
+        this.cvBuilderService.cvBuilderData
+            .subscribe(cvBuilder => this.cvBuilder = cvBuilder)
+            .unsubscribe();
     }
 
     initCvForm(): any {
-        this.cvCreateForm = this.formGroupBuilder.group({
-            cvTitle: ['', Validators.required], // <--- the FormControl name
-            userFirstName: ['', Validators.required],
-            userLastName: ['', Validators.required]
-        });
+        const formConfig = {};
+
+        formConfig[CvCreateFormFieldNames.cvTitle] = ['', Validators.required];
+        formConfig[CvCreateFormFieldNames.userFirstName] = ['', Validators.required];
+        formConfig[CvCreateFormFieldNames.userLastName] = ['', Validators.required];
+
+        this.cvCreateForm = this.formGroupBuilder.group(formConfig);
     }
 
     onCreate(): void {
         this.cvService.createCv(
             this.cvBuilder
-            .setCvTitle(this.cvCreateForm.get('cvTitle').value)
-            .setUserFirstName(this.cvCreateForm.get('userFirstName').value)
-            .setUserLastName(this.cvCreateForm.get('userLastName').value)
             .build()
         )
         .subscribe(cv => {
@@ -56,14 +68,32 @@ export class CvCreateComponent implements OnDestroy {
         (error) => console.error(error));
     }
 
-    onProjectAdd(project: Project): any {
-        console.log('Adding a project...');
-        this.cvBuilder.addProject(project);
-        // Sync with data model. I don't really like building each time, but it's not that heavy task
-        this.projects = this.cvBuilder.build().getProjects();
+    bindViewToData(): void {
+        this.cvBuilder
+            .setCvTitle(this.cvCreateForm.get(CvCreateFormFieldNames.cvTitle).value)
+            .setUserFirstName(this.cvCreateForm.get(CvCreateFormFieldNames.userFirstName).value)
+            .setUserLastName(this.cvCreateForm.get(CvCreateFormFieldNames.userLastName).value);
     }
 
-    ngOnDestroy(): void {
-        this.cvProjectDataServiceSubscription.unsubscribe();
+    bindDataToView(): void {
+        console.log('Bind data to view');
+        const cv = this.cvBuilder.build();
+        const form = {};
+
+        form[CvCreateFormFieldNames.cvTitle] = cv.title;
+        form[CvCreateFormFieldNames.userFirstName] = cv.user.firstName;
+        form[CvCreateFormFieldNames.userLastName] = cv.user.lastName;
+
+        // Use patchValue instead of setValue to ignore any (validation) errors, because
+        // it's possible to have em' at this point, like user has yet to submit all data.
+        this.cvCreateForm.patchValue(form);
+
+        this.projects = cv.getProjects();
+    }
+
+    onStartProjectCreate() {
+        this.bindViewToData();
+        this.cvBuilderService.updateCvBuilder(this.cvBuilder);
+        this.router.navigate(['/project']);
     }
 }

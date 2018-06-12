@@ -18,7 +18,7 @@
             </mat-form-field>
 
             <mat-label>  Projects </mat-label>
-            <a mat-raised-button [routerLink]="['/project']">  Add project </a>
+            <a mat-raised-button (click)="onStartProjectCreate()">  Add project </a>
             <mat-nav-list>
                 <a mat-list-item *ngFor="let project of projects"> {{ project.title }} </a>
             </mat-nav-list>

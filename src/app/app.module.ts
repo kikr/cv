@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { CvProjectComponent } from './cv-project/cv-project.component';
-import { CvProjectDataService } from './cv-project/cv-project.data.service';
+import { CvBuilderStatefulService } from './cv/cv.builder.stateful.service';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { CvProjectDataService } from './cv-project/cv-project.data.service';
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },  // TODO: PageNotFoundComponent
     ], { useHash: true})
   ],
-  providers: [ CvProjectDataService ],
+  providers: [ CvBuilderStatefulService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

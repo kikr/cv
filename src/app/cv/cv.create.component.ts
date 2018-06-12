@@ -26,7 +26,6 @@ export class CvCreateComponent {
     cvCreateForm: FormGroup;
     @Input() projects: Project[] = [];
     cvBuilder: CvBuilder;
-    cvBuilderServiceSubscription: Subscription;
 
     constructor(private formGroupBuilder: FormBuilder,
                 private cvService: CvService,

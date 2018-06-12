@@ -20,7 +20,6 @@ enum CvProjectFormFieldNames {
 export class CvProjectComponent {
   cvBuilder: CvBuilder;
   cvProjectForm: FormGroup;
-  cvBuilderServiceSubscription: Subscription;
 
   constructor(private formGroupBuilder: FormBuilder,
       private router: Router,

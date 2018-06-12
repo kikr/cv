@@ -20,7 +20,12 @@
             <mat-label>  Projects </mat-label>
             <a mat-raised-button (click)="onAddProject()">  Add project </a>
             <mat-nav-list>
-                <a mat-list-item *ngFor="let project of projects"> {{ project.title }} {{ project.description }}</a>
+                <a mat-list-item *ngFor="let project of projects"> 
+                    {{ project.title }} 
+                    {{ project.description }} 
+                    {{ project.start | date:"shortDate" }} 
+                    {{ project.end | date:"shortDate" }}
+                </a>
             </mat-nav-list>
 
     

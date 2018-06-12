@@ -56,7 +56,7 @@ export class CvCreateComponent {
 
     onCreate(): void {
         this.cvService.createCv(
-            this.cvBuilder
+            this.getCvBuilder()
             .build()
         )
         .subscribe(cv => {
@@ -65,13 +65,6 @@ export class CvCreateComponent {
             this.router.navigate(['/dashboard']);
         },
         (error) => console.error(error));
-    }
-
-    bindViewToData(): void {
-        this.cvBuilder
-            .setCvTitle(this.cvCreateForm.get(CvCreateFormFieldNames.cvTitle).value)
-            .setUserFirstName(this.cvCreateForm.get(CvCreateFormFieldNames.userFirstName).value)
-            .setUserLastName(this.cvCreateForm.get(CvCreateFormFieldNames.userLastName).value);
     }
 
     bindDataToView(): void {
@@ -90,9 +83,21 @@ export class CvCreateComponent {
         this.projects = cv.getProjects();
     }
 
-    onStartProjectCreate() {
-        this.bindViewToData();
-        this.cvBuilderService.updateCvBuilder(this.cvBuilder);
+    /**
+     * Return CV builder with latest data from the view
+     */
+    getCvBuilder(): CvBuilder {
+        // Bind view to the builder
+        this.cvBuilder
+            .setCvTitle(this.cvCreateForm.get(CvCreateFormFieldNames.cvTitle).value)
+            .setUserFirstName(this.cvCreateForm.get(CvCreateFormFieldNames.userFirstName).value)
+            .setUserLastName(this.cvCreateForm.get(CvCreateFormFieldNames.userLastName).value);
+
+        return this.cvBuilder;
+    }
+
+    onAddProject() {
+        this.cvBuilderService.updateCvBuilder(this.getCvBuilder());
         this.router.navigate(['/project']);
     }
 }

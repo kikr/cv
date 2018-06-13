@@ -97,7 +97,14 @@ export class CvCreateComponent {
     }
 
     onAddProject() {
+        console.log('Adding project...');
         this.cvBuilderService.updateCvBuilder(this.getCvBuilder());
-        this.router.navigate(['/project']);
+        this.router.navigate(['/project/']);
+    }
+
+    onShowProject(project: Project) {
+        console.log(`Showing ${project.title}-project...`);
+        this.cvBuilderService.updateCvBuilder(this.getCvBuilder());
+        this.router.navigate(['/projects', project.getId()]);
     }
 }

@@ -1,0 +1,25 @@
+<div>
+
+    <form  class="cv-project-form" [formGroup]="cvProjectForm">
+
+        <mat-form-field>
+            <mat-label> Title: </mat-label>
+            <input matInput formControlName="cvProjectTitle" readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Start: </mat-label>
+            <input matInput formControlName="cvProjectStart" readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> End: </mat-label>
+            <input matInput formControlName="cvProjectEnd" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label> Description: </mat-label>
+            <textarea matInput formControlName="cvProjectDescription" readonly> </textarea>
+        </mat-form-field>
+    </form>
+</div>

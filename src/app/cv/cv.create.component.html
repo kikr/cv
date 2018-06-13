@@ -17,18 +17,16 @@
                 <input matInput placeholder="Last name" formControlName="userLastName">
             </mat-form-field>
 
-            <mat-label>  Projects </mat-label>
+            <mat-label> Projects </mat-label>
             <a mat-raised-button (click)="onAddProject()">  Add project </a>
             <mat-nav-list>
-                <a mat-list-item *ngFor="let project of projects"> 
-                    {{ project.title }} 
-                    {{ project.description }} 
-                    {{ project.start | date:"shortDate" }} 
-                    {{ project.end | date:"shortDate" }}
-                </a>
+                <mat-list-item *ngFor="let project of projects">
+                    <a matLine>{{ project.title }}</a>
+                    <button mat-raised-button (click)="onShowProject(project)"> Details </button>
+                </mat-list-item> 
             </mat-nav-list>
 
-    
+
             <button mat-raised-button type="submit" value="Create" > Create </button>
         </form>
     </div>

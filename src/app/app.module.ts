@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { CvProjectComponent } from './cv-project/cv-project.component';
 import { CvBuilderStatefulService } from './cv/cv.builder.stateful.service';
+import { CvProjectOverviewComponent } from './cv-project/cv-project-overview/cv-project-overview.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CvBuilderStatefulService } from './cv/cv.builder.stateful.service';
     AppComponent,
     CvCreateComponent,
     DashboardComponent,
-    CvProjectComponent
+    CvProjectComponent,
+    CvProjectOverviewComponent,
   ],
   imports: [
     HttpClientModule,
@@ -27,11 +29,12 @@ import { CvBuilderStatefulService } from './cv/cv.builder.stateful.service';
       { path: 'cvs', component: CvCreateComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'project', component: CvProjectComponent },
+      { path: 'projects/:id', component: CvProjectOverviewComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },  // TODO: PageNotFoundComponent
     ], { useHash: true})
   ],
   providers: [ CvBuilderStatefulService ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

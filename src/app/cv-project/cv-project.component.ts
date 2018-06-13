@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { CvBuilder } from '../cv/models/cv';
 import { CvBuilderStatefulService } from '../cv/cv.builder.stateful.service';
 
-enum CvProjectFormFieldNames {
+export enum CvProjectFormFieldNames {
   cvProjectTitle = 'cvProjectTitle',
   cvProjectDescription = 'cvProjectDescription',
   cvProjectStart = 'cvProjectStart',
@@ -18,6 +18,7 @@ enum CvProjectFormFieldNames {
   styleUrls: ['./cv-project.component.css'],
 })
 export class CvProjectComponent {
+
   cvBuilder: CvBuilder;
   cvProjectForm: FormGroup;
 
@@ -50,6 +51,7 @@ export class CvProjectComponent {
     console.log('Adding project to CV...');
 
     const project = new Project();
+    project.setId(this.generateProjectId());
     project.title = this.cvProjectForm.get(CvProjectFormFieldNames.cvProjectTitle).value;
     project.description = this.cvProjectForm.get(CvProjectFormFieldNames.cvProjectDescription).value;
     project.start = this.cvProjectForm.get(CvProjectFormFieldNames.cvProjectStart).value;
@@ -59,6 +61,11 @@ export class CvProjectComponent {
     this.cvBuilderService.updateCvBuilder(this.cvBuilder);
 
     this.router.navigate(['/cvs']);
+  }
+
+  generateProjectId(): String {
+    // TODO: How about UUID
+    return (Math.random() * 10000000000000000).toString();
   }
 
 }

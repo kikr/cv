@@ -1,0 +1,29 @@
+<div>
+  <h2 width="100%" style="color: rgb(75, 75, 75); background-color: rgb(224, 224, 224);"> CV overview </h2>
+
+  <form  class="cv-create-form" [formGroup]="cvForm">
+      <mat-form-field appearance="standard">
+          <mat-label> CV Title: </mat-label>
+          <input matInput formControlName="cvTitle" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+          <mat-label>  First name: </mat-label>
+          <input matInput formControlName="userFirstName" readonly>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+          <mat-label>  Last name: </mat-label>
+          <input matInput formControlName="userLastName" readonly>
+      </mat-form-field>
+
+      <mat-label> Projects </mat-label>
+      <mat-nav-list>
+          <mat-list-item *ngFor="let project of projects">
+              <a matLine>{{ project.title }}</a>
+              <button mat-raised-button (click)="onReadProject(project)"> Show </button>
+          </mat-list-item> 
+      </mat-nav-list>
+
+  </form>
+</div>

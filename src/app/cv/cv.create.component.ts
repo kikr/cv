@@ -9,7 +9,7 @@ import { Project } from '../cv-project/project';
 import { Subscription } from 'rxjs';
 import { CvBuilderStatefulService } from './cv.builder.stateful.service';
 
-enum CvCreateFormFieldNames {
+export enum CvCreateFormFieldNames {
     cvTitle = 'cvTitle',
     userFirstName = 'userFirstName',
     userLastName = 'userLastName',

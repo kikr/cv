@@ -6,6 +6,7 @@ class User {
 }
 
 export class Cv {
+    _id: string;
     title: string;
     user: User;
     projects: Project[];
@@ -13,6 +14,10 @@ export class Cv {
     constructor() {
         this.user = new User();
         this.projects = [];
+    }
+
+    getId(): string {
+        return this._id;
     }
 
     getProjects(): Project[] {
@@ -51,6 +56,11 @@ export class CvBuilder {
 
     setUserLastName(lastName: string): CvBuilder {
         this.cv.user.lastName = lastName;
+        return this;
+    }
+
+    setProjects(projects: Project[]) {
+        this.cv.projects = projects;
         return this;
     }
 

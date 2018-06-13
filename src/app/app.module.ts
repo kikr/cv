@@ -30,13 +30,14 @@ import { CvOverviewComponent } from './cv/cv-overview/cv-overview.component';
     RouterModule.forRoot([
       { path: 'cvs/create', component: CvCreateComponent },
       { path: 'cvs/:id/read', component: CvOverviewComponent },
+      { path: 'cvs/:id/update', component: CvCreateComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'projects/create', component: CvProjectComponent },
       { path: 'projects/:id/read', component: CvProjectOverviewComponent },
       { path: 'projects/:id/update', component: CvProjectComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },  // TODO: PageNotFoundComponent
-    ], { useHash: true, enableTracing: false })
+    ], { useHash: true, enableTracing: true })
   ],
   providers: [ CvBuilderStatefulService ],
   bootstrap: [ AppComponent ]

@@ -21,4 +21,9 @@ export class CvService {
         console.log('Creating CV...');
         return this.httpClient.post<Cv>(CvResourceUrls.cvCollectionUrl, cv);
     }
+
+    updateCv(cv: Cv): Observable<Cv> {
+        console.log('Updating CV...');
+        return this.httpClient.put<Cv>(`${CvResourceUrls.cvCollectionUrl}/${cv._id}`, cv);
+    }
 }

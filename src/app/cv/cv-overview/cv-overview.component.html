@@ -19,7 +19,7 @@
 
       <mat-label> Projects </mat-label>
       <mat-nav-list>
-          <mat-list-item *ngFor="let project of projects">
+          <mat-list-item *ngFor="let project of projects" (click)="onReadProject(project)">
               <a matLine>{{ project.title }}</a>
               <button mat-raised-button (click)="onReadProject(project)"> Show </button>
           </mat-list-item> 

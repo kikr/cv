@@ -34,6 +34,23 @@ export class DashboardComponent implements OnInit {
       });
   }
 
+  onUpdateCv(cv: Cv) {
+    console.log('Update CV...');
+
+    if (cv) {
+      // Sibling components use CvBuilder to handle CV data, so we gotta do this
+      this.cvBuilderService.updateCvBuilder(new CvBuilder()
+        .setCvTitle(cv.title)
+        .setUserFirstName(cv.user.firstName)
+        .setUserLastName(cv.user.lastName)
+        .setProjects(cv.projects));
+
+      this.router.navigate(['cvs', cv._id, 'update']);
+    } else {
+      console.warn('Cannot update CV. No CV instance was passed by caller, this is very likely a bug');
+    }
+  }
+
   onReadCv(cv: Cv): void {
     console.log('Reading CV...');
     // TODO: CVs not casted properly, i.e. can't use getId-function

@@ -1,7 +1,7 @@
 import { Component, Injectable, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Cv, CvBuilder } from './models/cv';
 import { CvService } from './services/cv.service';
@@ -30,6 +30,7 @@ export class CvCreateComponent {
     constructor(private formGroupBuilder: FormBuilder,
                 private cvService: CvService,
                 private cvBuilderService: CvBuilderStatefulService,
+                private route: ActivatedRoute,
                 private router: Router) {
 
         this.initCvForm();
@@ -55,18 +56,38 @@ export class CvCreateComponent {
     }
 
     onCreate(): void {
-        this.cvService.createCv(
-            this.getCvBuilder()
-            .build()
-        )
-        .subscribe(cv => {
-            console.log(`Created CV`);
-            // Reset because we dont want the forms use this data anymore
-            this.cvBuilderService.reset();
-            // Navigate back to dashboard
-            this.router.navigate(['/dashboard']);
-        },
-        (error) => console.error(error));
+        this.route.params.subscribe((params) => {
+            const cvId = params.id;
+
+            // If we got CV ID, it means this component is displaying existing CV's data
+            if (cvId) {
+                const cvWithId = this.getCvBuilder().build();
+                cvWithId._id = cvId;
+
+                this.cvService
+                    .updateCv(cvWithId)
+                    .subscribe(cv => {
+                        console.log(`Created CV`);
+                        // Reset because we dont want the forms use this data anymore
+                        this.cvBuilderService.reset();
+                        // Navigate back to dashboard
+                        this.router.navigate(['/dashboard']);
+                    },
+                    (error) => console.error(error));
+            } else {
+                this.cvService
+                    .createCv(this.getCvBuilder().build())
+                    .subscribe(cv => {
+                        console.log(`Updated CV`);
+                        // Reset because we dont want the forms use this data anymore
+                        this.cvBuilderService.reset();
+                        // Navigate back to dashboard
+                        this.router.navigate(['/dashboard']);
+                    },
+                    (error) => console.error(error));
+            }
+        });
+
     }
 
     bindDataToView(): void {

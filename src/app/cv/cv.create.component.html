@@ -18,11 +18,11 @@
             </mat-form-field>
 
             <mat-label> Projects </mat-label>
-            <a mat-raised-button (click)="onAddProject()">  Add project </a>
+            <a mat-raised-button (click)="onCreateProject()">  Add project </a>
             <mat-nav-list>
                 <mat-list-item *ngFor="let project of projects">
                     <a matLine>{{ project.title }}</a>
-                    <button mat-raised-button (click)="onShowProject(project)"> Details </button>
+                    <button mat-raised-button (click)="onUpdateProject(project)"> Edit </button>
                 </mat-list-item> 
             </mat-nav-list>
 

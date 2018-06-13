@@ -54,8 +54,16 @@ export class CvBuilder {
         return this;
     }
 
-    addProject(project: Project): CvBuilder {
-        this.cv.projects.push(project);
+    addOrUpdateProject(project: Project): CvBuilder {
+        const index = project.getId() && this.cv.projects.findIndex((proj) => proj.getId() === project.getId());
+
+        // Add or update an existing one
+        if (index !== -1) {
+            this.cv.projects[index] = project;
+        } else {
+            this.cv.projects.push(project);
+        }
+
         return this;
     }
 

@@ -26,13 +26,14 @@ import { CvProjectOverviewComponent } from './cv-project/cv-project-overview/cv-
     MaterialModule,  // MaterialModule needs to come after BrowserModule
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'cvs', component: CvCreateComponent },
+      { path: 'cvs/create', component: CvCreateComponent },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'project', component: CvProjectComponent },
-      { path: 'projects/:id', component: CvProjectOverviewComponent },
+      { path: 'projects/create', component: CvProjectComponent },
+      { path: 'projects/:id/read', component: CvProjectOverviewComponent },
+      { path: 'projects/:id/update', component: CvProjectComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },  // TODO: PageNotFoundComponent
-    ], { useHash: true})
+    ], { useHash: true, enableTracing: true })
   ],
   providers: [ CvBuilderStatefulService ],
   bootstrap: [ AppComponent ]

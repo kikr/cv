@@ -10,6 +10,7 @@ import { MaterialModule } from './material.module';
 import { CvProjectComponent } from './cv-project/cv-project.component';
 import { CvBuilderStatefulService } from './cv/cv.builder.stateful.service';
 import { CvProjectOverviewComponent } from './cv-project/cv-project-overview/cv-project-overview.component';
+import { CvOverviewComponent } from './cv/cv-overview/cv-overview.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { CvProjectOverviewComponent } from './cv-project/cv-project-overview/cv-
     DashboardComponent,
     CvProjectComponent,
     CvProjectOverviewComponent,
+    CvOverviewComponent,
   ],
   imports: [
     HttpClientModule,
@@ -27,13 +29,14 @@ import { CvProjectOverviewComponent } from './cv-project/cv-project-overview/cv-
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'cvs/create', component: CvCreateComponent },
+      { path: 'cvs/:id/read', component: CvOverviewComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'projects/create', component: CvProjectComponent },
       { path: 'projects/:id/read', component: CvProjectOverviewComponent },
       { path: 'projects/:id/update', component: CvProjectComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },  // TODO: PageNotFoundComponent
-    ], { useHash: true, enableTracing: true })
+    ], { useHash: true, enableTracing: false })
   ],
   providers: [ CvBuilderStatefulService ],
   bootstrap: [ AppComponent ]

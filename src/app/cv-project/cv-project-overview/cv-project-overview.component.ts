@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CvProjectFormFieldNames } from '../cv-project.component';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
@@ -12,7 +12,7 @@ import { Project } from '../project';
   templateUrl: './cv-project-overview.component.html',
   styleUrls: ['../cv-project.component.css']
 })
-export class CvProjectOverviewComponent implements OnInit {
+export class CvProjectOverviewComponent {
 
   cvProjectForm: FormGroup;
 
@@ -21,9 +21,6 @@ export class CvProjectOverviewComponent implements OnInit {
               private cvBuilderService: CvBuilderStatefulService) {
     this.initCvProjectForm();
     this.bindCvToView();
-  }
-
-  ngOnInit() {
   }
 
   initCvProjectForm(): any {
@@ -48,7 +45,7 @@ export class CvProjectOverviewComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       const projectId = params['id'];
       const projects = cvBuilder.build().getProjects();
-      const project: Project = projects.find((proj) => proj.getId() === projectId);
+      const project: Project = projects.find((proj) => proj._id === projectId);
 
       if (project) {
         formValues[CvProjectFormFieldNames.cvProjectTitle] = project.title;

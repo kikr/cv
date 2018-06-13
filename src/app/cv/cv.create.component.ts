@@ -61,6 +61,8 @@ export class CvCreateComponent {
         )
         .subscribe(cv => {
             console.log(`Created CV`);
+            // Reset because we dont want the forms use this data anymore
+            this.cvBuilderService.reset();
             // Navigate back to dashboard
             this.router.navigate(['/dashboard']);
         },

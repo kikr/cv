@@ -22,4 +22,11 @@ export class CvBuilderStatefulService {
   updateCvBuilder(cvBuilder: CvBuilder) {
     this.cvBuilderDataSource.next(cvBuilder);
   }
+
+  /**
+   * "Resets" the CV builder by setting current value to empty CvBuilder
+   */
+  reset() {
+    this.cvBuilderDataSource.next(new CvBuilder());
+  }
 }

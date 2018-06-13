@@ -92,7 +92,7 @@ export class CvProjectComponent {
     this.cvBuilder.addOrUpdateProject(project);
     this.cvBuilderService.updateCvBuilder(this.cvBuilder);
 
-    this.router.navigate(['/cvs']);
+    this.router.navigate(['cvs', 'create']);
   }
 
   generateProjectId(): String {

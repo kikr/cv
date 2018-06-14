@@ -21,8 +21,7 @@
             <a mat-raised-button (click)="onCreateProject()">  Add project </a>
             <mat-nav-list>
                 <mat-list-item *ngFor="let project of projects">
-                    <a matLine>{{ project.title }}</a>
-                    <button mat-raised-button (click)="onUpdateProject(project)"> Edit </button>
+                    <div matLine> {{ project.title }} </div>
                 </mat-list-item> 
             </mat-nav-list>
             <button mat-raised-button type="submit" value="Create" > Create </button>

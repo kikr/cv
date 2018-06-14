@@ -19,7 +19,7 @@
         <td mat-cell *matCellDef="let cv"> {{cv.user.lastName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="cvAction">
+    <ng-container matColumnDef="cvAction" (click)="onReadCv(cv)">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let cv"> 
             <button mat-button (click)="onReadCv(cv)"> Show </button>
